@@ -4,6 +4,7 @@ import fs from "fs/promises"
 import matter from "gray-matter"
 import path from "path"
 import React from "react"
+import { extractMdxHeadings } from "./headings-helpers"
 
 const BLOG_POST_DIR_PATH = "/content"
 
@@ -15,13 +16,8 @@ export type BlogPostMetadata = {
 export const loadBlogPost = React.cache(async (slug: string) => {
   const rawContent = await readFile(`${BLOG_POST_DIR_PATH}/${slug}.mdx`)
   const { data: frontmatter, content } = matter(rawContent)
-
-  const h2 = content.match(/^##\s.+/gm) || []
-  const h3 = content.match(/^###\s.+/gm) || []
-  console.log(`h2: \n${h2}`)
-  console.log(`h3: \n${h3}`)
-
-  return { frontmatter, content }
+  const headings = extractMdxHeadings(content)
+  return { frontmatter, content, headings }
 })
 
 export const getBlogPostList = async () => {

@@ -1,18 +1,20 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
-import React from "react";
+import { MDXRemote } from "next-mdx-remote/rsc"
+import React from "react"
 
-import { loadBlogPost } from "@/helpers/file-helpers";
-import COMPONENT_MAP from "@/helpers/mdx-components";
+import { loadBlogPost } from "@/helpers/file-helpers"
+import COMPONENT_MAP from "@/helpers/mdx-components"
 
-import styles from "./BlogPost.module.css";
+import styles from "./BlogPost.module.css"
 
 export type BlogPostParams = {
-  params: { postSlug: string };
-};
+  params: { postSlug: string }
+}
 
 async function BlogPost({ params }: BlogPostParams) {
-  const { frontmatter, content } = await loadBlogPost(params.postSlug);
-  const { title, chatGPTPrompt } = frontmatter;
+  const { frontmatter, content, headings } = await loadBlogPost(params.postSlug)
+  const { title, chatGPTPrompt } = frontmatter
+
+  console.log("HEADINGS", headings)
 
   return (
     <main className={styles.wrapper}>
@@ -29,7 +31,7 @@ async function BlogPost({ params }: BlogPostParams) {
       </section>
       {/* TODO: add table of contents */}
     </main>
-  );
+  )
 }
 
-export default BlogPost;
+export default BlogPost
