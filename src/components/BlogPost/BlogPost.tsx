@@ -14,6 +14,26 @@ async function BlogPost({ params }: BlogPostParams) {
   const { frontmatter, content, headings } = await loadBlogPost(params.postSlug)
   const { title, chatGPTPrompt } = frontmatter
 
+  const renderHeadings = (): Array<String> => {
+    const headingsList: Array<String> = []
+    headings.map((item) => {
+      if (item.level === 2) {
+        headingsList.push(
+          <li className={styles.tocH2} key={item.title}>
+            <h2>{item.title}</h2>
+          </li>
+        )
+      } else if (item.level === 3) {
+        headingsList.push(
+          <li className={styles.tocH3} key={item.title}>
+            <h3>{item.title}</h3>
+          </li>
+        )
+      }
+    })
+    return headingsList
+  }
+
   console.log("HEADINGS", headings)
 
   return (
@@ -26,10 +46,15 @@ async function BlogPost({ params }: BlogPostParams) {
           questionable at best.
         </p>
       </section>
-      <section className={styles.content}>
-        <MDXRemote source={content} components={COMPONENT_MAP} />
-      </section>
-      {/* TODO: add table of contents */}
+      <div className={styles.container}>
+        <section className={styles.content}>
+          <MDXRemote source={content} components={COMPONENT_MAP} />
+        </section>
+        <section className={styles.toc}>
+          <h1>Contents</h1>
+          <ul className={styles.toc}>{renderHeadings()}</ul>
+        </section>
+      </div>
     </main>
   )
 }

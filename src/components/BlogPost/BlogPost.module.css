@@ -1,6 +1,8 @@
 .wrapper {
   position: relative;
 
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   margin: 0 auto;
 
@@ -28,4 +30,39 @@
 
 .content {
   max-width: var(--max-width);
+}
+
+.container {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.toc {
+  align-self: flex-start;
+  max-width: 18rem;
+  background-color: lightblue;
+  padding: 0.5rem;
+  line-height: 2rem;
+}
+
+.toc h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.toc h2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.toc h3 {
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-indent: 1rem;
+}
+
+.toc li {
+  list-style-type: none;
 }
