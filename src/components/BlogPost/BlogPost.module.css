@@ -43,7 +43,7 @@
 .toc {
   align-self: flex-start;
   max-width: 18rem;
-  background-color: lightblue;
+  background-color: var(--color-blue-3);
   padding: 0.5rem;
   line-height: 2rem;
 }
