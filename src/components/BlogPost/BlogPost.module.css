@@ -40,6 +40,11 @@
 }
 
 aside.toc {
+  position: sticky;
+  top: calc(var(--height-header) + 1rem);
   grid-area: sidebar;
   align-self: start;
+  @media screen and (max-width: 70rem) {
+    display: none;
+  }
 }
