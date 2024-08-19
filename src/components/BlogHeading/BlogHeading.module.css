@@ -1,6 +1,7 @@
 .heading {
   font-weight: 600;
   line-height: 1.1;
+  scroll-margin-top: calc(var(--height-header) + 1rem);
 }
 
 .heading2 {

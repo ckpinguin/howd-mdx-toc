@@ -13,6 +13,12 @@
   --height-header: 4rem;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
